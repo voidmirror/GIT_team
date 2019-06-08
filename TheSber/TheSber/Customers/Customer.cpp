@@ -1,7 +1,10 @@
-#include "Customer.h"
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
+#include <iostream>
+#include "Customer.h"
 
 void printList(CUSTOMER *ph)
 {
@@ -61,4 +64,32 @@ void deleteCustomer(CUSTOMER **ph, int ID)
 		pp = &((*pp)->pnext);
 	}
 
+}
+
+void getRandomName(char *getName[]) {
+	FILE *names;
+	if ((names = fopen("archive/names.txt", "r")) == NULL)
+	{
+		printf("Unavailable");
+		getchar();
+		return;
+	}
+
+	names = fopen("archive/names.txt", "r");
+
+	srand(time(0));
+	int random, checker = 1, len;
+	char temp[20];
+	random = rand() % 168 + 1;
+	while (fgets(temp, 20, names)) {
+		if (checker == random) {
+			//puts(temp);
+			len = strlen(temp);
+			for (int i = 0; i < len; i++) {
+				*getName[i] = temp[i];
+			}
+			return;
+		}
+		checker++;
+	}
 }

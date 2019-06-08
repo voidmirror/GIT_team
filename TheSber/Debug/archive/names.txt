@@ -1,3 +1,4 @@
+NAMES
 Alan
 Albert
 Alejandro
@@ -104,7 +105,8 @@ Lewis
 Logan
 Louis
 Lucas
-Luke	Laura
+Luke
+Laura
 Lauren
 Leah
 Leonora
@@ -117,7 +119,8 @@ Matthew
 Michael
 Miguel
 Miles
-Morgan	Mabel
+Morgan
+Mabel
 Mackenzie
 Madeline
 Madison

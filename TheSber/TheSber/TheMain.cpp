@@ -6,6 +6,7 @@
 #include <Windows.h>
 #include <conio.h>
 #include "Timer.h"
+#include "Customers\Customer.h"
 
 int main() {
 	//ќбъ€вление переменных
@@ -17,7 +18,10 @@ int main() {
 	time_t *startSimulateTime_p = &startSimulateTime;
 	time_t *currentSimulateTime_p = &currentSimulateTime;
 
-	FILE *names;
+	char name[20];
+	char *name_p[20];
+
+	//FILE *names;
 
 	
 	
@@ -50,6 +54,10 @@ int main() {
 		printf("\nSimulation is impossible. Timecode is unavailable.\nProgram will terminate in 5 seconds.");
 		Sleep(5000);
 	}	
+
+	getRandomName(name_p);
+	printf("\n\n");
+	puts(name);
 
 	//system("cls");
 	
