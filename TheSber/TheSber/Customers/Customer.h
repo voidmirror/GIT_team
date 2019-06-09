@@ -12,6 +12,7 @@ typedef struct Customer
 void newCustomer(CUSTOMER **ph, int ID, int Money, char *name);
 void deleteCustomer(CUSTOMER **ph, int ID);
 void printList(CUSTOMER *ph);
-void getRandomName(char *getName[]);
+void getRandomName(char getName[], int *len);
+void getRandomSurname(char getName[], int *len);
 
 #endif

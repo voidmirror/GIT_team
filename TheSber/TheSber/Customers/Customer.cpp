@@ -66,7 +66,20 @@ void deleteCustomer(CUSTOMER **ph, int ID)
 
 }
 
-void getRandomName(char *getName[]) {
+void getRandomName(char getName[], int *len) {
+	/*
+	Указание к функции:
+	На ввод массив символов char[20] и указатель на любой int,
+	который будет использован в качестве длины строки.
+	После выполнения функции в int *len будет лежать <длина слова + 1>
+	Можно использовать для вывода в консоль или печати в другую строку.
+	Пример:
+	for (int i = 0; i < len-1; i++) {
+		printf("%c", name[i]);
+	}
+	Примечание: puts(name) тоже работает.
+	*/
+
 	FILE *names;
 	if ((names = fopen("archive/names.txt", "r")) == NULL)
 	{
@@ -78,15 +91,64 @@ void getRandomName(char *getName[]) {
 	names = fopen("archive/names.txt", "r");
 
 	srand(time(0));
-	int random, checker = 1, len;
+	int random, checker = 1;
 	char temp[20];
 	random = rand() % 168 + 1;
+	//random = 5;	//Check
 	while (fgets(temp, 20, names)) {
 		if (checker == random) {
 			//puts(temp);
-			len = strlen(temp);
-			for (int i = 0; i < len; i++) {
-				*getName[i] = temp[i];
+			*len = strlen(temp);
+			for (int i = 0; i < *len; i++) {
+				getName[i] = temp[i];
+				if (i == *len - 1) {
+					getName[i] = '\0';
+				}
+			}
+			return;
+		}
+		checker++;
+	}
+}
+
+void getRandomSurname(char getName[], int *len) {
+	/*
+	Указание к функции:
+	На ввод массив символов char[20] и указатель на любой int,
+	который будет использован в качестве длины строки.
+	После выполнения функции в int *len будет лежать <длина слова + 1>
+	Можно использовать для вывода в консоль или печати в другую строку.
+	Пример:
+	for (int i = 0; i < len-1; i++) {
+	printf("%c", name[i]);
+	}
+	Примечание: puts(name) тоже работает.
+	*/
+
+	FILE *names;
+	if ((names = fopen("archive/surnames.txt", "r")) == NULL)
+	{
+		printf("Unavailable");
+		getchar();
+		return;
+	}
+
+	names = fopen("archive/surnames.txt", "r");
+
+	srand(time(0));
+	int random, checker = 1;
+	char temp[20];
+	random = rand() % 238 + 1;
+	//random = 2;	//Check
+	while (fgets(temp, 20, names)) {
+		if (checker == random) {
+			//puts(temp);
+			*len = strlen(temp);
+			for (int i = 0; i < *len; i++) {
+				getName[i] = temp[i];
+				if (i == *len - 1) {
+					getName[i] = '\0';
+				}
 			}
 			return;
 		}
