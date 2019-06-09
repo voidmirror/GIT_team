@@ -67,19 +67,6 @@ void deleteCustomer(CUSTOMER **ph, int ID)
 }
 
 void getRandomName(char getName[], int *len) {
-	/*
-	Указание к функции:
-	На ввод массив символов char[20] и указатель на любой int,
-	который будет использован в качестве длины строки.
-	После выполнения функции в int *len будет лежать <длина слова + 1>
-	Можно использовать для вывода в консоль или печати в другую строку.
-	Пример:
-	for (int i = 0; i < len-1; i++) {
-		printf("%c", name[i]);
-	}
-	Примечание: puts(name) тоже работает.
-	*/
-
 	FILE *names;
 	if ((names = fopen("archive/names.txt", "r")) == NULL)
 	{
@@ -112,19 +99,6 @@ void getRandomName(char getName[], int *len) {
 }
 
 void getRandomSurname(char getName[], int *len) {
-	/*
-	Указание к функции:
-	На ввод массив символов char[20] и указатель на любой int,
-	который будет использован в качестве длины строки.
-	После выполнения функции в int *len будет лежать <длина слова + 1>
-	Можно использовать для вывода в консоль или печати в другую строку.
-	Пример:
-	for (int i = 0; i < len-1; i++) {
-	printf("%c", name[i]);
-	}
-	Примечание: puts(name) тоже работает.
-	*/
-
 	FILE *names;
 	if ((names = fopen("archive/surnames.txt", "r")) == NULL)
 	{

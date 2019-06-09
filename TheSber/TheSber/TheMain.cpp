@@ -9,7 +9,7 @@
 #include "Customers\Customer.h"
 
 int main() {
-	//Объявление переменных
+	//Define variables
 	int simulateDuration;
 
 	time_t startSimulateTime;
@@ -21,12 +21,12 @@ int main() {
 	char name[20];
 	char surname[20];
 	
-	//Вывод приветствия
+	//Welcome
 	printf("Please, enter the duration of the simulation: ");
 	scanf("%d", &simulateDuration);
 	setCurentTime(startSimulateTime_p);
 	
-	//Проверка доступности получения таймкода
+	//Checking timecode access
 	if (startSimulateTime == -1) {
 		printf("\nSimulation is impossible. Timecode is unavailable.\nProgram will terminate in 5 seconds.");
 		Sleep(5000);
@@ -35,7 +35,7 @@ int main() {
 
 
 
-	//Пример преобразования строки в число
+	//String to number
 	int top;
 	char netop[7] = "000003";
 	top = atoi(netop);
@@ -44,7 +44,7 @@ int main() {
 	top = atoi(estop);
 	printf("%d - top\n", top);
 
-	//Рандомные имя-фамилия 
+	//Random names
 	int len;
 	int *len_p = &len;
 	getRandomName(name, len_p);
