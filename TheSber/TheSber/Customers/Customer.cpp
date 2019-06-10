@@ -11,7 +11,7 @@ void printList(CUSTOMER *ph)
 	CUSTOMER* p = ph;
 	while (p)
 	{
-		printf("%i\n", p->IDcode);
+		printf("%i  %s  %i\n", p->IDcode, p->Name, p->Balance);
 		p = p->pnext;
 
 	}
@@ -39,7 +39,7 @@ void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 	pnew->IDcode = ID;
 	pnew->Balance = Money;
 	pnew->Contribution = 0;
-	for (int i = 0; i < strlen(Name); i++)
+	for (int i = 0; i <= strlen(Name); i++)
 	{
 		pnew->Name[i] = *(Name + i);
 	}
@@ -128,4 +128,15 @@ void getRandomSurname(char getName[], int *len) {
 		}
 		checker++;
 	}
+}
+
+int getFreeID(CUSTOMER *ph)
+{
+	while (ph->pnext)
+	{
+		if (ph->IDcode + 2 == ph->pnext->IDcode)
+			break;
+		ph = ph->pnext;
+	}
+	return ph->IDcode + 1;
 }
