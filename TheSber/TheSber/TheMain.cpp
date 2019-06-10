@@ -8,6 +8,44 @@
 #include "Timer.h"
 #include "Customers\Customer.h"
 
+
+#include"Operations.h"
+//
+// #include <string.h>
+//
+//int main()
+//{
+//	CUSTOMER *list = NULL;
+//	char names[50];
+//	srand(time(NULL));
+//	int len = 49;
+//
+//	for (int i = 0; i < 7; i++)
+//	{
+//		getRandomName(names, &len);
+//		newCustomer(&list, i+1, rand() % 2000, names);
+//	}
+//	printList(list);
+//	
+//	changeBalance(&list, 4, 200, putMoney);
+//
+//	printList(list);
+//
+//	changeBalance(&list, 4, 200, receiveMoney);
+//
+//	printList(list);
+//
+//	changeBalance(&list, 4, 10000, receiveMoney);
+//
+//	printList(list);
+//
+//	transferMoney(&list, 2, 3, 100);
+//	printList(list);
+//
+//
+//}
+
+
 int main() {
 	//Define variables
 	int simulateDuration;
