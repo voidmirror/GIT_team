@@ -4,6 +4,7 @@
 #include <time.h>
 #include <string.h>
 #include <iostream>
+#include <Windows.h>
 #include "Customer.h"
 
 void printList(CUSTOMER *ph)
@@ -108,8 +109,9 @@ void getRandomSurname(char getName[], int *len) {
 	}
 
 	names = fopen("archive/surnames.txt", "r");
-
+	
 	srand(time(0));
+
 	int random, checker = 1;
 	char temp[20];
 	random = rand() % 238 + 1;

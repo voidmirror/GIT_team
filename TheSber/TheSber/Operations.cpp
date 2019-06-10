@@ -28,7 +28,6 @@ void receiveMoney(CUSTOMER **p, int sum)
 }
 //int contribution(CUSTOMER **phead, int ID, int sum, int per);
 
-
 int transferMoney(CUSTOMER **phead, int IDsource, int IDdest, int sum)
 {
 	CUSTOMER **pSource = phead;
