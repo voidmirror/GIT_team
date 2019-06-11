@@ -40,6 +40,7 @@ void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 	pnew->IDcode = ID;
 	pnew->Balance = Money;
 	pnew->Contribution = 0;
+	pnew->per = 0;
 	for (int i = 0; i <= strlen(Name); i++)
 	{
 		pnew->Name[i] = *(Name + i);
@@ -132,6 +133,17 @@ void getRandomSurname(char getName[], int *len) {
 		}
 		checker++;
 	}
+}
+
+int isVoidID(CUSTOMER *ph, int IDcode)
+{
+	while (ph)
+	{
+		if (ph->IDcode == IDcode)
+			return 0;
+		ph = ph->pnext;
+	}
+	return 1;
 }
 
 int getFreeID(CUSTOMER *ph)

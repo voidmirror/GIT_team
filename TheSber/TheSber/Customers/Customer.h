@@ -7,6 +7,7 @@ typedef struct Customer
 	char Name[50];
 	int Balance;
 	int Contribution;
+	float per;
 	struct Customer *pnext;
 } CUSTOMER;
 
@@ -20,5 +21,5 @@ void getRandomSurname(char getName[], int *len);
 void getInfoString(char getInfo[], int *len, int stringNumber);
 
 int getFreeID(CUSTOMER *ph);
-
+int checkID(CUSTOMER *ph, int IDcode);
 #endif
