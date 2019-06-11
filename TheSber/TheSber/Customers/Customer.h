@@ -1,5 +1,6 @@
 #ifndef CUSTOMER_H
 #define CUSTOMER_H
+
 typedef struct Customer
 {
 	int IDcode;
@@ -9,10 +10,15 @@ typedef struct Customer
 	struct Customer *pnext;
 } CUSTOMER;
 
+
+
 void newCustomer(CUSTOMER **ph, int ID, int Money, char *name);
 void deleteCustomer(CUSTOMER **ph, int ID);
 void printList(CUSTOMER *ph);
 void getRandomName(char getName[], int *len);
 void getRandomSurname(char getName[], int *len);
+void getInfoString(char getInfo[], int *len, int stringNumber);
+
+int getFreeID(CUSTOMER *ph);
 
 #endif

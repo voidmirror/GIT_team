@@ -7,6 +7,42 @@
 #include <conio.h>
 #include "Timer.h"
 #include "Customers\Customer.h"
+#include"Operations.h"
+
+/*
+int main()
+{
+	CUSTOMER *list = NULL;
+	char names[50];
+	srand(time(NULL));
+	int len = 49;
+
+	for (int i = 0; i < 7; i++)
+	{
+		getRandomName(names, &len);
+		newCustomer(&list, i+1, rand() % 2000, names);
+	}
+	printList(list);
+	
+	changeBalance(&list, 4, 200, putMoney);
+
+	printList(list);
+
+	changeBalance(&list, 4, 200, receiveMoney);
+
+	printList(list);
+
+	changeBalance(&list, 4, 10000, receiveMoney);
+
+	printList(list);
+
+	transferMoney(&list, 2, 3, 100);
+	printList(list);
+
+
+}
+*/
+
 
 int main() {
 	//Define variables
@@ -20,6 +56,8 @@ int main() {
 
 	char name[20];
 	char surname[20];
+	char infoString[50];
+	char *p_infoString = infoString;
 	
 	//Welcome
 	printf("Please, enter the duration of the simulation: ");
@@ -32,8 +70,10 @@ int main() {
 		Sleep(5000);
 	}	
 	
+	//Start Simulation
+	//simulation(startSimulateTime_p, currentSimulateTime_p, simulateDuration);
 
-
+	/*
 
 	//String to number
 	int top;
@@ -44,18 +84,43 @@ int main() {
 	top = atoi(estop);
 	printf("%d - top\n", top);
 
+	*/
+
+	/*
 	//Random names
 	int len;
 	int *len_p = &len;
-	getRandomName(name, len_p);
-	for (int i = 0; i < len-1; i++) {
-		printf("%c", name[i]);
+	for (int j = 0; j < 10; j++) {
+		getRandomName(name, len_p);
+		for (int i = 0; i < len - 1; i++) {
+			printf("%c", name[i]);
+		}
+		printf(" ");
+		getRandomSurname(surname, len_p);
+		puts(surname);
+		Sleep(1000);
 	}
-	printf(" ");
-	getRandomSurname(surname, len_p);
-	puts(surname);
-	
-	//system("cls");
+	*/
 
-	printf("\n");	
+	//system("cls");	
+	
+	/*
+	int len;
+	int *len_p = &len;
+	getInfoString(infoString, len_p, 3);
+	puts(infoString);
+	*/
+
+	int haveCustomer;
+	srand(time(0));
+	for (int i = 0; i < 10; i++) {
+		haveCustomer = rand() % 2;
+		printf("%d", haveCustomer);
+		//Sleep(1000);
+	}
+
+	printf("\n");
+
+	
+
 }

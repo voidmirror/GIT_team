@@ -4,6 +4,7 @@
 #include <time.h>
 #include <string.h>
 #include <iostream>
+#include <Windows.h>
 #include "Customer.h"
 
 void printList(CUSTOMER *ph)
@@ -11,7 +12,7 @@ void printList(CUSTOMER *ph)
 	CUSTOMER* p = ph;
 	while (p)
 	{
-		printf("%i\n", p->IDcode);
+		printf("%i  %s  %i\n", p->IDcode, p->Name, p->Balance);
 		p = p->pnext;
 
 	}
@@ -39,7 +40,7 @@ void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 	pnew->IDcode = ID;
 	pnew->Balance = Money;
 	pnew->Contribution = 0;
-	for (int i = 0; i < strlen(Name); i++)
+	for (int i = 0; i <= strlen(Name); i++)
 	{
 		pnew->Name[i] = *(Name + i);
 	}
@@ -92,6 +93,7 @@ void getRandomName(char getName[], int *len) {
 					getName[i] = '\0';
 				}
 			}
+			fclose(names);
 			return;
 		}
 		checker++;
@@ -108,8 +110,9 @@ void getRandomSurname(char getName[], int *len) {
 	}
 
 	names = fopen("archive/surnames.txt", "r");
-
+	
 	srand(time(0));
+
 	int random, checker = 1;
 	char temp[20];
 	random = rand() % 238 + 1;
@@ -124,8 +127,61 @@ void getRandomSurname(char getName[], int *len) {
 					getName[i] = '\0';
 				}
 			}
+			fclose(names);
 			return;
 		}
 		checker++;
 	}
+}
+
+int getFreeID(CUSTOMER *ph)
+{
+	while (ph->pnext)
+	{
+		if (ph->IDcode + 2 == ph->pnext->IDcode)
+			break;
+		ph = ph->pnext;
+	}
+	return ph->IDcode + 1;
+}
+
+void getInfoString(char getInfo[], int *len, int stringNumber) {
+	FILE *info;
+	if ((info = fopen("archive/info.txt", "r")) == NULL)
+	{
+		printf("Unavailable");
+		getchar();
+		return;
+	}
+	info = fopen("archive/info.txt", "r");
+	
+	//char infoString[50];
+	int checker = 1;
+	char temp[50];
+	stringNumber += 1;
+	while (fgets(temp, 50, info)) {
+		if (checker == stringNumber) {
+			//puts(temp);
+			*len = strlen(temp);
+			for (int i = 0; i < *len; i++) {
+				getInfo[i] = temp[i];
+				if (i == *len - 1) {
+					getInfo[i] = '\0';
+				}
+			}
+			fclose(info);
+			return;
+		}
+		checker++;
+	}
+}
+
+void splitInfoString(char infoString[], int *clientID, int *clientBalance, int *clientContrib) {
+	char temp[50];
+	int len = strlen(infoString);
+
+	for (int i = 0; i < len; i++) {
+		temp[i] = infoString[i];
+	}
+
 }
