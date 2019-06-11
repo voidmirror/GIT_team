@@ -40,9 +40,7 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 					infoStringsNumber++;
 				}
 				//Customer isn't new
-				customerNumber = rand() % 3 + 1;	//3 = info strings!!!
-				getInfoString(infoString, len_p, customerNumber);
-
+				
 			}
 			Sleep(2000);
 		}
