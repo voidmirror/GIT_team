@@ -33,6 +33,8 @@ int transferMoney(CUSTOMER **phead, int IDsource, int IDdest, int sum)
 {
 	CUSTOMER **pSource = phead;
 	CUSTOMER **pDest = phead;
+	if (IDsource == IDdest)
+		return 0;
 	while (((*pDest)->IDcode!=IDdest)||((*pSource)->IDcode != IDsource))
 	{
 		if ((!(*pDest)) || (!(*pSource)))

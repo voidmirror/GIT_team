@@ -4,10 +4,23 @@
 #include <Windows.h>
 #include "Timer.h"
 #include "Customers\Customer.h"
+#include "Operations.h"
 
 void setCurentTime(time_t *currentTime) {
 	time(currentTime);
 }
+int getExistingID(CUSTOMER *phe)
+{
+	CUSTOMER *p = phe;
+	int ID = rand() % getAmount(p) + 1;
+	if (checkID(p, ID))
+	{
+		if (ID == 1) (ID)++;
+		else (ID)--;
+	}
+	return ID;
+}
+
 
 void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simulateDuration) {
 	int day = 1, infoStringsNumber = 3, haveCustomer, isCustomerNew, operationNumber, customerNumber, transferRecipient;
@@ -17,6 +30,12 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 	int len, clientID, clientBalance, clientContrib;
 	int *len_p = &len, *clientID_p = &clientID, *clientBalance_p = &clientBalance, *clientContrib_p = &clientContrib;
 
+	CUSTOMER *list = NULL;
+	char fullname[50];
+	fullname[0] = 0;
+	
+	char surname[20];
+	surname[0] = 0;
 	setCurentTime(currentSimulateTime);
 	while (day <= simulateDuration) {
 		printCurrentDay(currentSimulateTime, day);
@@ -27,6 +46,7 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 			if (haveCustomer == 1) {
 				isCustomerNew = rand() % 100 + 1;
 				operationNumber = rand() % 4 + 1;
+				int customerID = 0;
 				/*
 				1 - putMoney
 				2 - receiveMoney
@@ -36,11 +56,51 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				
 				if (isCustomerNew < 6) {
 					//Customer is NEW
+					printf("!New customer!\n");
+					len = 20;
+					getRandomName(fullname, &len);
+					len = 20;
+					getRandomSurname(surname, &len);
+					strcat(fullname, surname);
+					fullname[strlen(fullname)] = 0;
+					customerID = getFreeID(list);
+					newCustomer(&list, customerID, rand() % 5000 + 1, fullname);
 
-					infoStringsNumber++;
+					//infoStringsNumber++;
+				}
+				else
+				{
+					
+					customerID = getExistingID(list);
 				}
 				//Customer isn't new
-				
+				printf("Current customer: %i: ", customerID);
+				printCustomerName(list, customerID);
+				printf("\n");
+				int sum = rand() % 2000 + 1;
+				switch (operationNumber)
+				{
+				case 1: //putMoney
+					if (changeBalance(&list, customerID, sum, putMoney)) printf("Customer %i just put %i on balance\n",customerID, sum);
+					else printf("Customer try to put some money but operation is failed\n");
+					break;
+				case 2: //recieveMoney
+					if (changeBalance(&list, customerID, sum, receiveMoney)) printf("Customer %i just recieved %i from balance\n", customerID, sum);
+					else printf("Customer try to recieve some money but operation is failed\n");
+					break;
+				case 3: //transferManey
+					if (transferMoney(&list, customerID, getExistingID(list), sum)) printf("Customer %i just transfered %i on balance\n", customerID, sum);
+					else printf("Customer try to transfer some money but operation is failed\n");
+					break;
+				case 4: // contrib
+					contribution(&list, customerID, sum, (float)rand() / RAND_MAX * (5.00 - 1.00) + 1.00);
+					printf("Customer %i made contribution\n");
+					break;
+				default:
+					break;
+				}
+				printList(list);
+				contribRise(&list);
 			}
 			Sleep(2000);
 		}

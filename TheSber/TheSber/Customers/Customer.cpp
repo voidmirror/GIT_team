@@ -12,14 +12,37 @@ void printList(CUSTOMER *ph)
 	CUSTOMER* p = ph;
 	while (p)
 	{
-		printf("%i  %s  %i\n", p->IDcode, p->Name, p->Balance);
+		printf("%i  %s  \n   balance: %i ", p->IDcode, p->Name, p->Balance);
+		if (p->Contribution != 0) printf("have contrib %i under %f %", p->Contribution, p->per);
+		printf("\n");
 		p = p->pnext;
 
 	}
 	printf("\n\n");
 }
 
+void printCustomerName(CUSTOMER *ph, int ID)
+{
+	CUSTOMER* p = ph;
+	while (p&&(p->IDcode!=ID))
+	{
+		p = p->pnext;
+	}
+	if (p) printf("%s", p->Name);
 
+}
+int getAmount(CUSTOMER *ph)
+{
+	int k = 0;
+	CUSTOMER* p = ph;
+	while (p)
+	{
+		k++;
+		p = p->pnext;
+
+	}
+	return k;
+}
 
 void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 {
@@ -137,22 +160,24 @@ void getRandomSurname(char getName[], int *len) {
 
 int isVoidID(CUSTOMER *ph, int IDcode)
 {
-	while (ph)
+	CUSTOMER* p = ph;
+	while (p)
 	{
-		if (ph->IDcode == IDcode)
+		if (p->IDcode == IDcode)
 			return 0;
-		ph = ph->pnext;
+		p = p->pnext;
 	}
 	return 1;
 }
 
 int getFreeID(CUSTOMER *ph)
 {
-	while (ph->pnext)
+	CUSTOMER* p = ph;
+	while (p->pnext)
 	{
-		if (ph->IDcode + 2 == ph->pnext->IDcode)
+		if (p->IDcode + 2 == p->pnext->IDcode)
 			break;
-		ph = ph->pnext;
+		p = p->pnext;
 	}
-	return ph->IDcode + 1;
+	return p->IDcode + 1;
 }
