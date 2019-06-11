@@ -71,7 +71,12 @@ int main() {
 	}	
 	
 	//Start Simulation
-	//simulation(startSimulateTime_p, currentSimulateTime_p, simulateDuration);
+	simulation(startSimulateTime_p, currentSimulateTime_p, simulateDuration);
+
+	system("cls");
+	printf("Thanks for this unforgettable %d days with our Bank!!\n", simulateDuration);
+	printf("We hope, you enjoyed! See you next time!\n");
+	Sleep(4000);
 
 	/*
 	//String to number
@@ -101,12 +106,6 @@ int main() {
 	*/
 
 	//system("cls");	
-	
-	
-	
-
-	printf("\n");
-
 	
 
 }

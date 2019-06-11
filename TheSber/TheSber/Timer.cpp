@@ -24,11 +24,11 @@ int getExistingID(CUSTOMER *phe)
 
 void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simulateDuration) {
 	int day = 1, infoStringsNumber = 3, haveCustomer, isCustomerNew, operationNumber, customerNumber, transferRecipient;
-	int dayDuration = 30;
+	int dayDuration = 30, dailyPutMoney, dailyRecieveMoney;
 	char infoString[50], clientName[20], clientSurname[20];
 
-	int len, clientID, clientBalance, clientContrib;
-	int *len_p = &len, *clientID_p = &clientID, *clientBalance_p = &clientBalance, *clientContrib_p = &clientContrib;
+	int len;
+	int *len_p = &len;
 
 	CUSTOMER *list = NULL;
 	char fullname[50];
@@ -41,6 +41,8 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 		printCurrentDay(currentSimulateTime, day);
 		while (currentSimulateTime <= startSimulation + dayDuration) {
 
+			dailyPutMoney = 0;
+			dailyRecieveMoney = 0;
 			srand(time(0));
 			haveCustomer = rand() % 1;
 			if (haveCustomer == 1) {
@@ -81,11 +83,17 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				switch (operationNumber)
 				{
 				case 1: //putMoney
-					if (changeBalance(&list, customerID, sum, putMoney)) printf("Customer %i just put %i on balance\n",customerID, sum);
+					if (changeBalance(&list, customerID, sum, putMoney)) { 
+						printf("Customer %i just put %i on balance\n", customerID, sum); 
+						dailyPutMoney += sum;
+					}
 					else printf("Customer try to put some money but operation is failed\n");
 					break;
 				case 2: //recieveMoney
-					if (changeBalance(&list, customerID, sum, receiveMoney)) printf("Customer %i just recieved %i from balance\n", customerID, sum);
+					if (changeBalance(&list, customerID, sum, receiveMoney)) { 
+						printf("Customer %i just recieved %i from balance\n", customerID, sum);
+						dailyRecieveMoney += sum;
+					}
 					else printf("Customer try to recieve some money but operation is failed\n");
 					break;
 				case 3: //transferManey
@@ -103,8 +111,20 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				contribRise(&list);
 			}
 			Sleep(2000);
+
 		}
 		day++;
+		printf("\n");
+		printf("Money, has deposited in the Bank today: %d\n", dailyPutMoney);
+		printf("Money, has withdrawn from the Bank today: %d\n", dailyRecieveMoney);
+		Sleep(3000);
+		if (day <= simulateDuration) {
+			printf("So, this is the end of the Simulation.");
+			return;
+		}
+		printf("New day is coming...");
+		Sleep(2000);
+		system("cls");
 	}
 }
 
