@@ -104,13 +104,20 @@ int main() {
 
 	//system("cls");	
 	
-	
+	/*
 	int len;
 	int *len_p = &len;
 	getInfoString(infoString, len_p, 3);
 	puts(infoString);
-	
+	*/
 
+	int haveCustomer;
+	srand(time(0));
+	for (int i = 0; i < 10; i++) {
+		haveCustomer = rand() % 2;
+		printf("%d", haveCustomer);
+		//Sleep(1000);
+	}
 
 	printf("\n");
 

@@ -176,3 +176,12 @@ void getInfoString(char getInfo[], int *len, int stringNumber) {
 	}
 }
 
+void splitInfoString(char infoString[], int *clientID, int *clientBalance, int *clientContrib) {
+	char temp[50];
+	int len = strlen(infoString);
+
+	for (int i = 0; i < len; i++) {
+		temp[i] = infoString[i];
+	}
+
+}
