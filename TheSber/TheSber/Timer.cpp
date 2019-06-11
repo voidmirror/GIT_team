@@ -16,6 +16,8 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 		printCurrentDay(currentSimulateTime, day);
 		while (currentSimulateTime <= startSimulation + dayDuration) {
 
+
+
 		}
 		day++;
 	}

@@ -93,6 +93,7 @@ void getRandomName(char getName[], int *len) {
 					getName[i] = '\0';
 				}
 			}
+			fclose(names);
 			return;
 		}
 		checker++;
@@ -126,6 +127,7 @@ void getRandomSurname(char getName[], int *len) {
 					getName[i] = '\0';
 				}
 			}
+			fclose(names);
 			return;
 		}
 		checker++;
@@ -142,3 +144,35 @@ int getFreeID(CUSTOMER *ph)
 	}
 	return ph->IDcode + 1;
 }
+
+void getInfoString(char getInfo[], int *len, int stringNumber) {
+	FILE *info;
+	if ((info = fopen("archive/info.txt", "r")) == NULL)
+	{
+		printf("Unavailable");
+		getchar();
+		return;
+	}
+	info = fopen("archive/info.txt", "r");
+	
+	//char infoString[50];
+	int checker = 1;
+	char temp[50];
+	stringNumber += 1;
+	while (fgets(temp, 50, info)) {
+		if (checker == stringNumber) {
+			//puts(temp);
+			*len = strlen(temp);
+			for (int i = 0; i < *len; i++) {
+				getInfo[i] = temp[i];
+				if (i == *len - 1) {
+					getInfo[i] = '\0';
+				}
+			}
+			fclose(info);
+			return;
+		}
+		checker++;
+	}
+}
+

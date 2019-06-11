@@ -56,6 +56,8 @@ int main() {
 
 	char name[20];
 	char surname[20];
+	char infoString[50];
+	char *p_infoString = infoString;
 	
 	//Welcome
 	printf("Please, enter the duration of the simulation: ");
@@ -68,7 +70,8 @@ int main() {
 		Sleep(5000);
 	}	
 	
-
+	//Start Simulation
+	//simulation(startSimulateTime_p, currentSimulateTime_p, simulateDuration);
 
 	/*
 
@@ -83,6 +86,7 @@ int main() {
 
 	*/
 
+	/*
 	//Random names
 	int len;
 	int *len_p = &len;
@@ -96,8 +100,17 @@ int main() {
 		puts(surname);
 		Sleep(1000);
 	}
+	*/
 
-	//system("cls");
+	//system("cls");	
+	
+	
+	int len;
+	int *len_p = &len;
+	getInfoString(infoString, len_p, 3);
+	puts(infoString);
+	
+
 
 	printf("\n");
 

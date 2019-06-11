@@ -17,6 +17,7 @@ void deleteCustomer(CUSTOMER **ph, int ID);
 void printList(CUSTOMER *ph);
 void getRandomName(char getName[], int *len);
 void getRandomSurname(char getName[], int *len);
+void getInfoString(char getInfo[], int *len, int stringNumber);
 
 int getFreeID(CUSTOMER *ph);
 
