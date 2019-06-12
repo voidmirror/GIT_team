@@ -21,7 +21,7 @@ void getRandomSurname(char getName[], int *len);
 void getInfoString(char getInfo[], int *len, int stringNumber);
 
 int getFreeID(CUSTOMER *ph);
-int checkID(CUSTOMER *ph, int IDcode);
+int isVoidID(CUSTOMER *ph, int IDcode);
 int getAmount(CUSTOMER *ph);
 void printCustomerName(CUSTOMER *ph, int ID);
 #endif

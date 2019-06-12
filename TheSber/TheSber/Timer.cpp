@@ -13,7 +13,7 @@ int getExistingID(CUSTOMER *phe)
 {
 	CUSTOMER *p = phe;
 	int ID = rand() % getAmount(p) + 1;
-	if (checkID(p, ID))
+	if (isVoidID(p, ID))
 	{
 		if (ID == 1) (ID)++;
 		else (ID)--;
@@ -36,6 +36,19 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 	
 	char surname[20];
 	surname[0] = 0;
+
+	for (int i = 0; i < 5; i++)
+	{
+		len = 20;
+		getRandomName(fullname, &len);
+		len = 20;
+		getRandomSurname(surname, &len);
+		strcat(fullname, surname);
+		fullname[strlen(fullname)] = 0;
+		newCustomer(&list, i+1, rand() % 5000 + 1, fullname);
+	}
+
+
 	setCurentTime(currentSimulateTime);
 	while (day <= simulateDuration) {
 		printCurrentDay(currentSimulateTime, day);
