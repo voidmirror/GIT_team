@@ -12,14 +12,37 @@ void printList(CUSTOMER *ph)
 	CUSTOMER* p = ph;
 	while (p)
 	{
-		printf("%i  %s  %i\n", p->IDcode, p->Name, p->Balance);
+		printf("%i  %s  \n   balance: %i ", p->IDcode, p->Name, p->Balance);
+		if (p->Contribution != 0) printf("have contrib %i under %4.2f %", p->Contribution, p->per);
+		printf("\n");
 		p = p->pnext;
 
 	}
 	printf("\n\n");
 }
 
+void printCustomerName(CUSTOMER *ph, int ID)
+{
+	CUSTOMER* p = ph;
+	while (p&&(p->IDcode!=ID))
+	{
+		p = p->pnext;
+	}
+	if (p) printf("%s", p->Name);
 
+}
+int getAmount(CUSTOMER *ph)
+{
+	int k = 0;
+	CUSTOMER* p = ph;
+	while (p)
+	{
+		k++;
+		p = p->pnext;
+
+	}
+	return k;
+}
 
 void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 {
@@ -40,6 +63,7 @@ void newCustomer(CUSTOMER **ph, int ID, int Money, char *Name)
 	pnew->IDcode = ID;
 	pnew->Balance = Money;
 	pnew->Contribution = 0;
+	pnew->per = 0;
 	for (int i = 0; i <= strlen(Name); i++)
 	{
 		pnew->Name[i] = *(Name + i);
@@ -78,7 +102,8 @@ void getRandomName(char getName[], int *len) {
 
 	names = fopen("archive/names.txt", "r");
 
-	srand(time(0));
+	//srand(time(0));
+
 	int random, checker = 1;
 	char temp[20];
 	random = rand() % 168 + 1;
@@ -111,7 +136,7 @@ void getRandomSurname(char getName[], int *len) {
 
 	names = fopen("archive/surnames.txt", "r");
 	
-	srand(time(0));
+	//srand(time(0));
 
 	int random, checker = 1;
 	char temp[20];
@@ -134,54 +159,26 @@ void getRandomSurname(char getName[], int *len) {
 	}
 }
 
+int isVoidID(CUSTOMER *ph, int IDcode)
+{
+	CUSTOMER* p = ph;
+	while (p)
+	{
+		if (p->IDcode == IDcode)
+			return 0;
+		p = p->pnext;
+	}
+	return 1;
+}
+
 int getFreeID(CUSTOMER *ph)
 {
-	while (ph->pnext)
+	CUSTOMER* p = ph;
+	while (p->pnext)
 	{
-		if (ph->IDcode + 2 == ph->pnext->IDcode)
+		if (p->IDcode + 2 == p->pnext->IDcode)
 			break;
-		ph = ph->pnext;
+		p = p->pnext;
 	}
-	return ph->IDcode + 1;
-}
-
-void getInfoString(char getInfo[], int *len, int stringNumber) {
-	FILE *info;
-	if ((info = fopen("archive/info.txt", "r")) == NULL)
-	{
-		printf("Unavailable");
-		getchar();
-		return;
-	}
-	info = fopen("archive/info.txt", "r");
-	
-	//char infoString[50];
-	int checker = 1;
-	char temp[50];
-	stringNumber += 1;
-	while (fgets(temp, 50, info)) {
-		if (checker == stringNumber) {
-			//puts(temp);
-			*len = strlen(temp);
-			for (int i = 0; i < *len; i++) {
-				getInfo[i] = temp[i];
-				if (i == *len - 1) {
-					getInfo[i] = '\0';
-				}
-			}
-			fclose(info);
-			return;
-		}
-		checker++;
-	}
-}
-
-void splitInfoString(char infoString[], int *clientID, int *clientBalance, int *clientContrib) {
-	char temp[50];
-	int len = strlen(infoString);
-
-	for (int i = 0; i < len; i++) {
-		temp[i] = infoString[i];
-	}
-
+	return p->IDcode + 1;
 }

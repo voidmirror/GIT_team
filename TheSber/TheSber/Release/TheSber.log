@@ -1,0 +1,27 @@
+﻿Сборка начата 13.06.2019 22:16:33.
+     1>Проект "D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\TheSber\TheSber.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         D:\Programmes files 7\Visual Studio 2013\Program\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /sdl /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Timer.cpp
+         Timer.cpp
+     1>Timer.cpp(33): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>Timer.cpp(67): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+     1>Timer.cpp(143): warning C4244: аргумент: преобразование "double" в "float", возможна потеря данных
+     1>Timer.cpp(28): warning C4101: infoString: неиспользованная локальная переменная
+     1>Timer.cpp(26): warning C4101: transferRecipient: неиспользованная локальная переменная
+     1>Timer.cpp(28): warning C4101: clientName: неиспользованная локальная переменная
+     1>Timer.cpp(26): warning C4101: customerNumber: неиспользованная локальная переменная
+     1>Timer.cpp(28): warning C4101: clientSurname: неиспользованная локальная переменная
+     1>Timer.cpp(181): warning C4101: temp: неиспользованная локальная переменная
+       Link:
+         D:\Programmes files 7\Visual Studio 2013\Program\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\Release\TheSber.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\Release\TheSber.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\Release\TheSber.lib" /MACHINE:X86 /SAFESEH Release\Customer.obj
+         Release\Operations.obj
+         Release\TheMain.obj
+         Release\Timer.obj
+         Создание кода
+         Создание кода завершено
+         TheSber.vcxproj -> D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\Release\TheSber.exe
+     1>Сборка проекта "D:\Programmes files 7\GitHub\Repositories\GIT_team\TheSber\TheSber\TheSber.vcxproj" завершена (целевые объекты Build).
+
+Сборка успешно завершена.
+
+Затраченное время: 00:00:00.69

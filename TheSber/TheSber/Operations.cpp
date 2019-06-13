@@ -1,5 +1,6 @@
 #include "Operations.h"
 //#include "Customers/Customer.h"
+#include <math.h>
 
 int changeBalance(CUSTOMER **phead, int IDcode, int sum, void (*oper)(CUSTOMER **, int))
 {
@@ -32,6 +33,8 @@ int transferMoney(CUSTOMER **phead, int IDsource, int IDdest, int sum)
 {
 	CUSTOMER **pSource = phead;
 	CUSTOMER **pDest = phead;
+	if (IDsource == IDdest)
+		return 0;
 	while (((*pDest)->IDcode!=IDdest)||((*pSource)->IDcode != IDsource))
 	{
 		if ((!(*pDest)) || (!(*pSource)))
@@ -54,4 +57,28 @@ int transferMoney(CUSTOMER **phead, int IDsource, int IDdest, int sum)
 		putMoney(pDest, sum);
 	}
 	return 0;
+}
+
+void contribution(CUSTOMER **phead, int IDcode, int sum, float per)
+{
+	CUSTOMER **p = phead;
+	while ((*p) && ((*p)->IDcode != IDcode))
+	{
+		p = &((*p)->pnext);
+	}
+	if (((*p)->Contribution != 0)||(!(*p)))
+	{
+		return;
+	}
+	(*p)->Contribution = sum;
+	(*p)->per = per;
+}
+void contribRise(CUSTOMER **phead)
+{
+	CUSTOMER **p = phead;
+	while ((*p))
+	{
+		(*p)->Contribution += round((*p)->Contribution * (*p)->per);
+		p = &((*p)->pnext);
+	}
 }
