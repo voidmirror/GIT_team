@@ -54,13 +54,16 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 	setCurentTime(currentSimulateTime);
 	while (day <= simulateDuration) {
 		//printCurrentDay(currentSimulateTime, day, startSimulation);		//If all clients are shown
-		//setCurentTime(currentSimulateTime);								//If all clients are shown
+		setCurentTime(currentSimulateTime);								//If all clients are shown
 		dailyPutMoney = 0;
 		dailyRecieveMoney = 0;
 		setCurentTime(startSimulation);
+		//printf("%d - start\n", *startSimulation);
+		//printf("%d - start + daydur\n", *startSimulation + dayDuration);
+		Sleep(1000);
 		while (*currentSimulateTime <= *startSimulation + dayDuration) {
 
-			//setCurentTime(currentSimulateTime);							//If all clients are shown
+			setCurentTime(currentSimulateTime);							//If all clients are shown
 			srand(time(0));
 			haveCustomer = rand() % 2;
 			//printf("%d", haveCustomer);		//CHECK
@@ -160,10 +163,12 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 		Sleep(10000); //normal - 10000
 		if (day == simulateDuration) {
 			printf("So, this is the end of the Simulation.");
+			Sleep(2500);
 			return;
 		}
 		printf("New day is coming...");
 		day++;
+		setCurentTime(startSimulation);
 		Sleep(2000);
 		//system("cls");
 	}
