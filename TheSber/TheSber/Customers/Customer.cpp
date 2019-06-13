@@ -13,7 +13,7 @@ void printList(CUSTOMER *ph)
 	while (p)
 	{
 		printf("%i  %s  \n   balance: %i ", p->IDcode, p->Name, p->Balance);
-		if (p->Contribution != 0) printf("have contrib %i under %f %", p->Contribution, p->per);
+		if (p->Contribution != 0) printf("have contrib %i under %4.2f %", p->Contribution, p->per);
 		printf("\n");
 		p = p->pnext;
 
