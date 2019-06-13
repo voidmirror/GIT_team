@@ -138,7 +138,7 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 					break;
 				case 4: // contrib
 					contribution(&list, customerID, sum, (float)rand() / RAND_MAX * (5.00 - 1.00) + 1.00);
-					printf("Customer %i made contribution\n");
+					printf("Customer made contribution\n");
 					break;
 				default:
 					break;
