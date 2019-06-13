@@ -102,7 +102,8 @@ void getRandomName(char getName[], int *len) {
 
 	names = fopen("archive/names.txt", "r");
 
-	srand(time(0));
+	//srand(time(0));
+
 	int random, checker = 1;
 	char temp[20];
 	random = rand() % 168 + 1;
@@ -135,7 +136,7 @@ void getRandomSurname(char getName[], int *len) {
 
 	names = fopen("archive/surnames.txt", "r");
 	
-	srand(time(0));
+	//srand(time(0));
 
 	int random, checker = 1;
 	char temp[20];

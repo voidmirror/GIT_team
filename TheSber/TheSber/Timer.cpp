@@ -24,11 +24,13 @@ int getExistingID(CUSTOMER *phe)
 
 void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simulateDuration) {
 	int day = 1, infoStringsNumber = 3, haveCustomer, isCustomerNew, operationNumber, customerNumber, transferRecipient;
-	int dayDuration = 30, dailyPutMoney, dailyRecieveMoney;
+	int dayDuration = 15, dailyPutMoney, dailyRecieveMoney;
 	char infoString[50], clientName[20], clientSurname[20];
 
 	int len;
 	int *len_p = &len;
+
+	srand(time(0));
 
 	CUSTOMER *list = NULL;
 	char fullname[50];
@@ -51,14 +53,21 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 
 	setCurentTime(currentSimulateTime);
 	while (day <= simulateDuration) {
-		printCurrentDay(currentSimulateTime, day);
-		while (currentSimulateTime <= startSimulation + dayDuration) {
+		//printCurrentDay(currentSimulateTime, day, startSimulation);		//If all clients are shown
+		//setCurentTime(currentSimulateTime);								//If all clients are shown
+		dailyPutMoney = 0;
+		dailyRecieveMoney = 0;
+		setCurentTime(startSimulation);
+		while (*currentSimulateTime <= *startSimulation + dayDuration) {
 
-			dailyPutMoney = 0;
-			dailyRecieveMoney = 0;
+			//setCurentTime(currentSimulateTime);							//If all clients are shown
 			srand(time(0));
-			haveCustomer = rand() % 1;
+			haveCustomer = rand() % 2;
+			//printf("%d", haveCustomer);		//CHECK
 			if (haveCustomer == 1) {
+				system("cls");
+				printCurrentDay(currentSimulateTime, day, startSimulation);		//If only 1 client shown
+				setCurentTime(currentSimulateTime);								//If only 1 client shown
 				isCustomerNew = rand() % 100 + 1;
 				operationNumber = rand() % 4 + 1;
 				int customerID = 0;
@@ -68,7 +77,7 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				3 - transferMoney
 				4 - contribution
 				*/
-				
+				//printf("Check random\n");
 				if (isCustomerNew < 6) {
 					//Customer is NEW
 					printf("!New customer!\n");
@@ -80,8 +89,6 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 					fullname[strlen(fullname)] = 0;
 					customerID = getFreeID(list);
 					newCustomer(&list, customerID, rand() % 5000 + 1, fullname);
-
-					//infoStringsNumber++;
 				}
 				else
 				{
@@ -93,6 +100,22 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				printCustomerName(list, customerID);
 				printf("\n");
 				int sum = rand() % 2000 + 1;
+				//printf("%Operation: 3\n", operationNumber);	//CHECK
+				switch (operationNumber) {
+				case 1:
+					printf("%Operation: Put money (1)\n");
+					break;
+
+				case 2:
+					printf("%Operation: Recieve money (2)\n");
+					break;
+				case 3:
+					printf("%Operation: Transfer to another client (3)\n");
+					break;
+				case 4:
+					printf("%Operation: Made contribution (4)\n");
+				}
+				
 				switch (operationNumber)
 				{
 				case 1: //putMoney
@@ -120,47 +143,53 @@ void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simula
 				default:
 					break;
 				}
-				printList(list);
-				contribRise(&list);
+				//printList(list);
+				//contribRise(&list);
 			}
 			Sleep(2000);
-
+			
 		}
-		day++;
+		system("cls");
+		printCurrentDay(currentSimulateTime, day, startSimulation);
+		printList(list);
+		contribRise(&list);
 		printf("\n");
 		printf("Money, has deposited in the Bank today: %d\n", dailyPutMoney);
 		printf("Money, has withdrawn from the Bank today: %d\n", dailyRecieveMoney);
-		Sleep(3000);
-		if (day <= simulateDuration) {
+		printf("\n");
+		Sleep(10000); //normal - 10000
+		if (day == simulateDuration) {
 			printf("So, this is the end of the Simulation.");
 			return;
 		}
 		printf("New day is coming...");
+		day++;
 		Sleep(2000);
-		system("cls");
+		//system("cls");
 	}
 }
 
-void printCurrentDay(time_t *currentSimulateTime, int day) {
+void printCurrentDay(time_t *currentSimulateTime, int day, time_t* startSimulation) {
+	
 	char date[24];
 	char *curDate;
 	char temp[10];
 
 	setCurentTime(currentSimulateTime);
-	*currentSimulateTime += 86400 * day;
+	*currentSimulateTime += 86400 * (day - 1);
 	curDate = ctime(currentSimulateTime);
+	
 	for (int i = 0; i < 24; i++) {
 		date[i] = curDate[i];
 	}
-
 	date[10] = ',';
 	date[11] = ' ';
 	for (int i = 12; i <= 15; i++) {
 		date[i] = date[i + 8];
 	}
-
 	for (int i = 0; i < 16; i++) {
 		printf("%c", date[i]);
 	}
+
 	printf("\n");
 }

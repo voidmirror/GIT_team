@@ -2,7 +2,7 @@
 #define Timer_H
 
 void setCurentTime(time_t *currentTime);
-void printCurrentDay(time_t *currentSimulateTime, int day);
+void printCurrentDay(time_t *currentSimulateTime, int day, time_t*);
 
 void simulation(time_t *startSimulation, time_t *currentSimulateTime, int simulateDuration);
 

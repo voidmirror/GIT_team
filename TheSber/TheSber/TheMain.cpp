@@ -58,6 +58,8 @@ int main() {
 	char surname[20];
 	char infoString[50];
 	char *p_infoString = infoString;
+
+	int finish = 0;
 	
 	//Welcome
 	printf("Please, enter the duration of the simulation: ");
@@ -70,13 +72,91 @@ int main() {
 		Sleep(5000);
 	}	
 	
+	/*
+	setCurentTime(currentSimulateTime_p);
+	while (*currentSimulateTime_p <= *startSimulateTime_p + 30) {
+		setCurentTime(currentSimulateTime_p);
+		printf("%d\n", currentSimulateTime);
+		Sleep(2000);
+	}
+	*/
+
+	printf("\n\n");
+	printf("Simulation is going to start: ");
+	Sleep(1000);
+	printf("3... ");
+	Sleep(1000);
+	printf("2... ");
+	Sleep(1000);
+	printf("1...");
+	Sleep(1000);
+
 	//Start Simulation
+	setCurentTime(startSimulateTime_p);
 	simulation(startSimulateTime_p, currentSimulateTime_p, simulateDuration);
 
+	
+	/*printf("%d - start\n", startSimulateTime);
+	setCurentTime(currentSimulateTime_p);
+	printf("%d - current\n", currentSimulateTime);
+	char *curDate;
+	curDate = ctime(currentSimulateTime_p);
+	char date[24];
+	for (int i = 0; i < 24; i++) {
+		date[i] = curDate[i];
+	}
+	printf("%d - start\n", startSimulateTime);
+	setCurentTime(currentSimulateTime_p);
+	printf("%d - current\n", currentSimulateTime);*/
+
+	/*
+	printf("Start PrintDay\n");
+	printf("%d - start time\n", *startSimulateTime_p);
+	char date[24];
+	char *curDate;
+	char temp[10];
+
+	printf("%d - start time\n", *startSimulateTime_p);
+
+	setCurentTime(currentSimulateTime_p);
+	*currentSimulateTime_p += 86400 * 0;
+	printf("\n%d - current in PrintDay\n", *currentSimulateTime_p);
+	curDate = ctime(currentSimulateTime_p);
+	puts(curDate);
+	for (int i = 0; i < 24; i++) {
+		date[i] = curDate[i];
+	}
+
+	printf("%d - start time\n", *startSimulateTime_p);
+
+	date[10] = ',';
+	date[11] = ' ';
+	for (int i = 12; i <= 15; i++) {
+		date[i] = date[i + 8];
+	}
+
+	printf("%d - start time\n", *startSimulateTime_p);
+
+	for (int i = 0; i < 16; i++) {
+		printf("%c", date[i]);
+	}
+	printf("\n");
+
+	printf("%d - start time\n", *startSimulateTime_p);
+	printf("End PrintDay");*/
+
+	/*
+	printf("%d - start\n", startSimulateTime);
+	startSimulateTime += 30;
+	printf("%d - start\n", startSimulateTime);*/
+
+
+	
 	system("cls");
-	printf("Thanks for this unforgettable %d days with our Bank!!\n", simulateDuration);
-	printf("We hope, you enjoyed! See you next time!\n");
+	printf("Thanks for this unforgettable %d day(s) with our Bank!!\n", simulateDuration);
+	printf("We hope, you enjoyed!\nHave a nice day! See you next time!\n");
 	Sleep(4000);
+	
 
 	/*
 	//String to number
